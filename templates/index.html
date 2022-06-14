@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 响应式布局文件 device-width：呈现在不同设备 initial-scale： 1:1 的比例呈现，不会有任何的缩放 -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/> -->
+    <script src="{{ url_for('static',filename='js/utils/jquery-3.6.0.min.js') }}"></script>
+    <script src="static/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../static/js/utils/cytoscape.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/dist/css/bootstrap.css') }}">
+    <link href="{{ url_for('static', filename='images/校徽.jpg') }}" rel="shortcut icon">
+    <title>航空航天平台</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container">
+    <a class="navbar-brand font-monospace" href="#">
+        航空航天知识图谱
+    </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+        <ul class="navbar-nav me-0 pe-2 mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="content-container">
+    <div class="container pt-2" style="width: 95%">
+        <div class="my-2">
+            <h3 class="d-inline"><span class="badge bg-secondary">输入</span></h3>
+            <button type="button" id="btn-clear" class="btn btn-danger ms-2 float-end">清 空</button>
+            <button type="button" id="btn-nre" class="btn btn-success float-end">关系抽取</button>
+            <button type="button" id="btn-ner" class="btn btn-success float-end">实体识别</button>
+        </div>
+        <textarea class="document" id="document"
+                  style="margin-left:0px;;height:70px;width: 100%"></textarea>
+    </div>
+    <div class="container py-2">
+        <div class="my-2">
+            <h3 class="d-inline"><span class="badge bg-secondary">抽取实体结果</span></h3>
+            <div class="d-inline" id="ner-result"></div>
+            <button type="button" id="outputButton" class="btn btn-success float-end">导 出</button>
+        </div>
+    </div>
+    <div class="container">
+        <h3 ><span class="badge bg-secondary">抽取关系结果</span></h3>
+        <div class=""></div>
+        <div class="my-concept" style="width: 100%;">
+        </div>
+    </div>  
+    <div class="container">
+        <div class="row">
+            <span class="col">实体名字</span>
+            <input class="col" type="text" id="entity-name" placeholder="请输入实体名">
+            <span class="col">实体标签</span>
+            <input class="col" type="text" id="entity-label" placeholder="请输入实体标签">
+            <button class="btn btn-success col" id="btn-createNode">创建实体</button>
+        </div>
+        
+    </div>
+    <div class="container">
+        <span>实体1</span>
+        <input type="text" id="edge-source" placeholder="请输入实体1">
+        <span>实体2</span>
+        <input type="text" id="edge-target" placeholder="请输入实体2">
+        <span>关系</span>
+        <input type="text" id="edge-re" placeholder="请输入关系">
+        <button class="btn btn-success" id="btn-createEdge">创建关系</button>
+    </div>
+    <div class="container">
+            <div id="cy" style="height: 400px; width: 100%; border: 1px solid red;"></div>
+    </div>
+</div>
+<script  src="../static/js/index.js"></script>
+</body>
+</html>
